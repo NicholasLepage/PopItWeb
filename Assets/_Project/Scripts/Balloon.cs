@@ -14,14 +14,14 @@ public class Balloon : MonoBehaviour
 
     private AudioSource _audioSource;
     private MeshRenderer _balloonMeshRenderer;
-    private CapsuleCollider _capsuleCollider2D;
+    private CapsuleCollider _capsuleCollider;
 
 
     // Start is called before the first frame update
     void Start()
     {
         _audioSource = GetComponent<AudioSource>();
-        _capsuleCollider2D = GetComponent<CapsuleCollider>();
+        _capsuleCollider = GetComponent<CapsuleCollider>();
         _balloonMeshRenderer = _balloonVisuals.GetComponent<MeshRenderer>();
 
         SetupBalloon();
@@ -41,6 +41,8 @@ public class Balloon : MonoBehaviour
         _balloonMeshRenderer.material.color = _isBadBalloon ? Color.red : _colors[Random.Range(0, _colors.Length)];
 
         _balloonValue = _isBadBalloon ? -1 : 1;
+
+        _balloonVisuals.SetActive(true);
     }
 
 
@@ -59,8 +61,12 @@ public class Balloon : MonoBehaviour
         GameManager.Instance.OnBalloonPopped.Invoke(_balloonValue);
         _audioSource.Play();
         _balloonVisuals.SetActive(false);
-        _capsuleCollider2D.enabled = false;
+        _capsuleCollider.enabled = false;
 
         Destroy(gameObject, 0.5f);
+    }
+
+    public void CleanScreen() {
+        _balloonVisuals.SetActive(false);
     }
 }

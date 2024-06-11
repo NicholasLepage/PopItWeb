@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject _mainMenu;
     [SerializeField] private GameObject _balloonSpawner;
 
+    [SerializeField] private GameObject _balloonCollection;
+
     public int TotalScore;
 
     public int Score = 0;
@@ -68,12 +70,16 @@ public class GameManager : MonoBehaviour
         OnGameOver.Invoke();
 
         print("Game Over");
+        CurrentGameState = GameState.GAMEOVER;
 
         _balloonSpawner.SetActive(false);
 
+        foreach (Transform child in _balloonCollection.transform) {
+            child.position = new Vector3(10f, 0, 0);
+        }
+
         _mainMenu.SetActive(true);
 
-        CurrentGameState = GameState.GAMEOVER;
 
         TotalScore += Score;
         PlayerPrefs.SetInt("TotalScore", TotalScore);

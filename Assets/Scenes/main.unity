@@ -359,7 +359,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _ballonPrefab: {fileID: 2408282240229100605, guid: 761f58b1426282c408a1b95e72629bda, type: 3}
-  _spawnRate: 0.5
+  _spawnRate: 0.25
+  _balloonCollection: {fileID: 1000807926}
 --- !u!4 &236675849
 Transform:
   m_ObjectHideFlags: 0
@@ -409,7 +410,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 20, y: 0}
+  m_AnchoredPosition: {x: 30, y: 0}
   m_SizeDelta: {x: 250, y: 50}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &262648258
@@ -1024,7 +1025,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 15.155159, y: 1, z: 1}
+  m_Size: {x: 38.3, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &880479870
 GameObject:
@@ -1654,6 +1655,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mainMenu: {fileID: 1182559593}
   _balloonSpawner: {fileID: 236675847}
+  _balloonCollection: {fileID: 1000807926}
   TotalScore: 0
   Score: 0
   OnGameStart:
@@ -1700,7 +1702,19 @@ MonoBehaviour:
         m_CallState: 2
   OnGameOver:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2408282240229100605, guid: 761f58b1426282c408a1b95e72629bda, type: 3}
+        m_TargetAssemblyTypeName: Balloon, Assembly-CSharp
+        m_MethodName: CleanScreen
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!4 &1451939033
 Transform:
   m_ObjectHideFlags: 0

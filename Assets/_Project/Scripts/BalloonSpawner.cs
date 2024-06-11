@@ -8,6 +8,8 @@ public class BalloonSpawner : MonoBehaviour
     [SerializeField] private Balloon _ballonPrefab;
     [SerializeField] private float _spawnRate = .5f;
 
+    [SerializeField] private GameObject _balloonCollection;
+
 
 
     // Start is called before the first frame update
@@ -26,7 +28,7 @@ public class BalloonSpawner : MonoBehaviour
         {
             Vector3 _spawnPosition = new Vector3(Random.Range(-2.5f, 2.5f), transform.position.y, 0);
             yield return new WaitForSeconds(_spawnRate);
-            Instantiate(_ballonPrefab, _spawnPosition, Quaternion.identity, this.transform);
+            Instantiate(_ballonPrefab, _spawnPosition, Quaternion.identity, _balloonCollection.transform);
         }
     }
 }
