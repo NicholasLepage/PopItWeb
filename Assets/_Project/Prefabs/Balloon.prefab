@@ -50,6 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 3
   _balloonVisuals: {fileID: 1211486738326375172}
+  _badBalloonPopSound: {fileID: 8300000, guid: 06373dd3dab2dcb498fde60f09751834, type: 3}
   _colors:
   - {r: 0.93333334, g: 0.17254901, b: 0.8566346, a: 1}
   - {r: 0.17254901, g: 0.37604916, b: 0.93333334, a: 0}
