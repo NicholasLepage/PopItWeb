@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class Balloon : MonoBehaviour
 {
-    [SerializeField] private float _speed = 1f;
     [SerializeField] private GameObject _balloonVisuals;
 
     [SerializeField] private AudioClip _badBalloonPopSound;
@@ -11,6 +10,7 @@ public class Balloon : MonoBehaviour
 
     private bool _isBadBalloon;
     private int _balloonValue;
+    private float _speed = 1f;
 
     private AudioSource _audioSource;
     private MeshRenderer _balloonMeshRenderer;
@@ -38,6 +38,8 @@ public class Balloon : MonoBehaviour
             _isBadBalloon = true;
             _audioSource.clip = _badBalloonPopSound;
         }
+        _speed = Random.Range(1f, 3f);
+
         _balloonMeshRenderer.material.color = _isBadBalloon ? Color.red : _colors[Random.Range(0, _colors.Length)];
 
         _balloonValue = _isBadBalloon ? -1 : 1;
