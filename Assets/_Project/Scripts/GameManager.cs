@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     public UnityEvent OnGameStart;
-    public UnityEvent OnBalloonPopped;
+    public UnityEvent<int> OnBalloonPopped;
 
     public UnityEvent OnGameOver;
 
@@ -49,9 +49,9 @@ public class GameManager : MonoBehaviour
     }        
 
 
-    public void UpdateScore()
+    public void UpdateScore(int balloonValue)
     {
-        Score += 1;
+        Score += balloonValue;
     }
 
     public void StartGame() {

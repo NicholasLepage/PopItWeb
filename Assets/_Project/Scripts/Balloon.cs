@@ -10,6 +10,7 @@ public class Balloon : MonoBehaviour
     [SerializeField] private Color[] _colors;
 
     private bool _isBadBalloon;
+    private int _balloonValue;
 
     private AudioSource _audioSource;
     private MeshRenderer _balloonMeshRenderer;
@@ -38,6 +39,8 @@ public class Balloon : MonoBehaviour
             _audioSource.clip = _badBalloonPopSound;
         }
         _balloonMeshRenderer.material.color = _isBadBalloon ? Color.red : _colors[Random.Range(0, _colors.Length)];
+
+        _balloonValue = _isBadBalloon ? -1 : 1;
     }
 
 
@@ -53,7 +56,7 @@ public class Balloon : MonoBehaviour
 
     private void Die()
     {
-        GameManager.Instance.OnBalloonPopped.Invoke();
+        GameManager.Instance.OnBalloonPopped.Invoke(_balloonValue);
         _audioSource.Play();
         _balloonVisuals.SetActive(false);
         _capsuleCollider2D.enabled = false;

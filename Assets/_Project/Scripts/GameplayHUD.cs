@@ -33,7 +33,7 @@ public class GameplayHUD : MonoBehaviour
         _scoreText.text = $"Score: {GameManager.Instance.Score}";
     }
 
-    private void OnBalloonPopped()
+    private void OnBalloonPopped(int score)
     {
         UpdateScoreText();
     }
