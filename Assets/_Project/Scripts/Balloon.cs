@@ -37,12 +37,13 @@ public class Balloon : MonoBehaviour
         if (Random.Range(0, 5) == 0) {
             _isBadBalloon = true;
             _audioSource.clip = _badBalloonPopSound;
+            gameObject.tag = "BadBalloon";
         }
-        _speed = Random.Range(1f, 3f);
+        _speed = Random.Range(2f, 5f);
 
         _balloonMeshRenderer.material.color = _isBadBalloon ? Color.red : _colors[Random.Range(0, _colors.Length)];
 
-        _balloonValue = _isBadBalloon ? -1 : 1;
+        _balloonValue = _isBadBalloon ? -5 : 1;
 
         _balloonVisuals.SetActive(true);
     }

@@ -48,7 +48,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5db04cac9f05df74d896489ede147e49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 3
   _balloonVisuals: {fileID: 1211486738326375172}
   _badBalloonPopSound: {fileID: 8300000, guid: 06373dd3dab2dcb498fde60f09751834, type: 3}
   _colors:

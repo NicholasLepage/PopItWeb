@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
 
     public int Score = 0;
 
+    public int Life = 3;
+
     public static GameManager Instance;
 
     public UnityEvent OnGameStart;
@@ -84,5 +86,13 @@ public class GameManager : MonoBehaviour
         TotalScore += Score;
         PlayerPrefs.SetInt("TotalScore", TotalScore);
 
+    }
+
+    public void LoseLife() {
+        Life -= 1;
+        
+        if (Life == 0) {
+            GameOver();
+        }
     }
 }
