@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SelfDes : MonoBehaviour
+public class SelfDestruct : MonoBehaviour
 {
     void Start()
     {
