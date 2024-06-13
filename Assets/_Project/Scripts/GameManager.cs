@@ -42,13 +42,6 @@ public class GameManager : MonoBehaviour
     }        
 
 
-    // public void UpdateScore(int balloonValue)
-    // {
-    //     ScoreManager.Instance.Score += balloonValue;
-    // }
-
-    
-
     public void StartGame() {
         // Starting Game 📢
         OnGameStart.Invoke();

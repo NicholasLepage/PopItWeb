@@ -36,6 +36,7 @@ public class ScoreManager : MonoBehaviour
 
     public void UpdateScore(int balloonValue) {
         Score += balloonValue;
+        if (Score < 0) Score = 0;
 
         // Score Changed 📢
         OnScoreChanged.Invoke();
