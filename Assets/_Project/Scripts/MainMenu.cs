@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -18,15 +16,20 @@ public class MainMenu : MonoBehaviour
         gameObject.SetActive(true);
         _mainMenuCanvas.gameObject.SetActive(true);
 
-        _totalBalloonMenuText.text = $"Balloons: {GameManager.Instance.TotalScore}";
-        GameManager.Instance.OnGameStart.AddListener(() => gameObject.SetActive(false));
+        _totalBalloonMenuText.text = $"Balloons: {ScoreManager.Instance.TotalScore}";
     }
 
     public void GameOverMenu() {
         _mainMenuCanvas.gameObject.SetActive(true);
+        
         _scoreObtainedText.enabled = true;
-        _scoreObtainedText.text = $"+{GameManager.Instance.Score}";
-        _totalBalloonMenuText.text = $"Balloons: {GameManager.Instance.TotalScore}";
+        _scoreObtainedText.text = $"+{ScoreManager.Instance.Score}";
+
+        _totalBalloonMenuText.text = $"Balloons: {ScoreManager.Instance.TotalScore}";
+    }
+
+    public void OnGameStart() {
+        gameObject.SetActive(false);
     }
 
     // public void ReturnToMainMenu() {

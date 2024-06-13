@@ -1,4 +1,3 @@
-using System;
 using TMPro;
 using UnityEngine;
 
@@ -10,11 +9,13 @@ public class GameplayHUD : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Reset score UI to 0
         UpdateScoreText();
-        GameManager.Instance.OnBalloonPopped.AddListener(OnBalloonPopped);
-        GameManager.Instance.OnGameStart.AddListener(() => UpdateScoreText());
 
         GameManager.Instance.OnGameOver.AddListener(OnGameOver);
+        GameManager.Instance.OnBalloonPopped.AddListener(OnBalloonPopped);
+
+        ScoreManager.Instance.OnScoreChanged.AddListener(UpdateScoreText);
 
         gameObject.SetActive(false);
     }
@@ -24,13 +25,11 @@ public class GameplayHUD : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    private void Update() {
-        UpdateScoreText();
-    }
+
 
     private void UpdateScoreText()
     {
-        _scoreText.text = $"Score: {GameManager.Instance.Score}";
+        _scoreText.text = $"Score: {ScoreManager.Instance.Score}";
     }
 
     private void OnBalloonPopped(int score)

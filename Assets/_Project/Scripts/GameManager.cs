@@ -8,9 +8,6 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private GameObject _balloonCollection;
 
-    public int TotalScore;
-
-    public int Score = 0;
 
     public int Life = 3;
 
@@ -32,8 +29,7 @@ public class GameManager : MonoBehaviour
     public GameState CurrentGameState { get; private set; }
 
 
-    private void Awake() {
-
+    private void Start() {
         if(Instance == null) // If there is no instance already
         {
             DontDestroyOnLoad(gameObject); // Keep the GameObject, this component is attached to, across different scenes
@@ -42,46 +38,40 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject); // Destroy the GameObject, this component is attached to
         }
-        TotalScore = PlayerPrefs.GetInt("TotalScore", TotalScore);
-    }
-
-    private void Start() {
         CurrentGameState = GameState.MAINMENU;
     }        
 
 
-    public void UpdateScore(int balloonValue)
-    {
-        Score += balloonValue;
-    }
+    // public void UpdateScore(int balloonValue)
+    // {
+    //     ScoreManager.Instance.Score += balloonValue;
+    // }
+
+    
 
     public void StartGame() {
+        // Starting Game 📢
         OnGameStart.Invoke();
-
         CurrentGameState = GameState.GAME;
-
-        Score = 0;
-
         print("Starting Game");
+
+        Life = 3;
     }
 
     public void GameOver() {
+        // Game Over 📢
         OnGameOver.Invoke();
-
-        print("Game Over");
         CurrentGameState = GameState.GAMEOVER;
+        print("Game Over");
 
-        _balloonSpawner.SetActive(false);
+        _balloonSpawner.SetActive(false); // Ballloon Spawner's job
 
         foreach (Transform child in _balloonCollection.transform) {
             child.position = new Vector3(10f, 0, 0);
+            child.tag = "Untagged";
         }
 
         _mainMenu.SetActive(true);
-
-
-        TotalScore += Score;
-        PlayerPrefs.SetInt("TotalScore", TotalScore);
 
     }
 

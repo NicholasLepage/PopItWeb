@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class SelfDestruct : MonoBehaviour
 {
-    void Start()
+    public void OnGameStart()
     {
-        GameManager.Instance.OnGameStart.AddListener(() => Destroy(gameObject));
+        Destroy(gameObject);
     }
 }
