@@ -4,7 +4,7 @@ public class Despawner : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other) {
         if (other.gameObject.tag == "Balloon") {
-            GameManager.Instance.LoseLife();
+            LifeManager.Instance.LoseLife();
         }
         Destroy(other.gameObject);
     }

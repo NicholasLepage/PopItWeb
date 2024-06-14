@@ -8,14 +8,11 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private GameObject _balloonCollection;
 
-
-    public int Life = 3;
-
     public static GameManager Instance;
 
+    // Events
     public UnityEvent OnGameStart;
     public UnityEvent<int> OnBalloonPopped;
-
     public UnityEvent OnGameOver;
 
     public enum GameState {
@@ -47,8 +44,6 @@ public class GameManager : MonoBehaviour
         OnGameStart.Invoke();
         CurrentGameState = GameState.GAME;
         print("Starting Game");
-
-        Life = 3;
     }
 
     public void GameOver() {
@@ -66,13 +61,5 @@ public class GameManager : MonoBehaviour
 
         _mainMenu.SetActive(true);
 
-    }
-
-    public void LoseLife() {
-        Life -= 1;
-        
-        if (Life == 0) {
-            GameOver();
-        }
     }
 }
