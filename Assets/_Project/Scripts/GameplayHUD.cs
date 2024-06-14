@@ -20,12 +20,11 @@ public class GameplayHUD : MonoBehaviour
 
         ScoreManager.Instance.OnScoreChanged.AddListener(UpdateScoreText);
 
-        LifeManager.Instance.OnLifeChanged.AddListener(UpdateLifeUI);
 
         gameObject.SetActive(false);
     }
 
-    private void UpdateLifeUI()
+    public void UpdateLifeUI()
     {
         if (LifeManager.Instance.Life == 3){
             _heart1.gameObject.SetActive(true);

@@ -360,8 +360,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1322,7 +1322,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 100, y: -7.5}
+  m_AnchoredPosition: {x: 90, y: -7.5}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1000807926
@@ -1561,6 +1561,7 @@ MonoBehaviour:
   _totalBalloonMenuText: {fileID: 1532296128}
   _scoreObtainedText: {fileID: 1109669051}
   _mainMenuCanvas: {fileID: 135049306}
+  _mysteryButton: {fileID: 2089222170}
 --- !u!1 &1289439539
 GameObject:
   m_ObjectHideFlags: 0
@@ -2449,8 +2450,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -221.03}
-  m_SizeDelta: {x: 10, y: 431.05997}
+  m_AnchoredPosition: {x: 0, y: -35.78006}
+  m_SizeDelta: {x: 10, y: 801.5601}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2025280565
 MonoBehaviour:
@@ -2609,7 +2610,19 @@ MonoBehaviour:
   Life: 3
   OnLifeChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1750928607}
+        m_TargetAssemblyTypeName: GameplayHUD, Assembly-CSharp
+        m_MethodName: UpdateLifeUI
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!82 &2059242597
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2734,15 +2747,15 @@ RectTransform:
   m_GameObject: {fileID: 2089222166}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.1, y: 1.1, z: 1.1}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 442110623}
   m_Father: {fileID: 135049307}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -367}
+  m_AnchoredPosition: {x: 0, y: -310.03}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2089222168
