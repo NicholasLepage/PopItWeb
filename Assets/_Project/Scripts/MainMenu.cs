@@ -35,7 +35,7 @@ public class MainMenu : MonoBehaviour
         _totalBalloonMenuText.text = $"Balloons: {ScoreManager.Instance.TotalScore}";
 
         BalloonSlasherObtained = PlayerPrefs.GetInt("SlasherObtained", 0) == 1 ? true : false;
-        _balloonSlasherAnimator.SetBool("AlreadyUnlocked", true);
+        if (BalloonSlasherObtained) _balloonSlasherAnimator.SetBool("BalloonSlasherAcquired", true);
 
         CheckMysteryButtonProgress();
     }
@@ -77,7 +77,7 @@ public class MainMenu : MonoBehaviour
     public void OnMysteryButton() {
         if (ScoreManager.Instance.TotalScore >= _mysteryCost) {
             // Pay up the Balloon Price
-            // ScoreManager.Instance.UpdateTotalScore(-_mysteryCost);
+            ScoreManager.Instance.UpdateTotalScore(-_mysteryCost);
             SetTotalBalloonText();
 
             GameManager.Instance.BalloonSlasherObtained = true;
