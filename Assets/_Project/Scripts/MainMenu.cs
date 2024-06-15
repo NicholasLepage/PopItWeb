@@ -12,7 +12,11 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private Canvas _mainMenuCanvas;
     [SerializeField] private Button _mysteryButton;
 
+    [SerializeField] private GameObject _balloonSlasher;
+
     private int _mysteryCost = 1000;
+
+    private Animator _balloonSlasherAnimator;
 
     // Start is called before the first frame update
     void Start()
@@ -20,23 +24,33 @@ public class MainMenu : MonoBehaviour
         gameObject.SetActive(true);
         _mainMenuCanvas.gameObject.SetActive(true);
 
+        _balloonSlasherAnimator = _balloonSlasher.GetComponent<Animator>();
+
         _totalBalloonMenuText.text = $"Balloons: {ScoreManager.Instance.TotalScore}";
+
+        CheckMysteryButtonProgress();
     }
 
-    public void GameOverMenu() {
+    public void GameOverMenu()
+    {
         _mainMenuCanvas.gameObject.SetActive(true);
-        
+
         _scoreObtainedText.enabled = true;
         _scoreObtainedText.text = $"+{ScoreManager.Instance.Score}";
 
-        _totalBalloonMenuText.text = $"Balloons: {ScoreManager.Instance.TotalScore}";
+        SetTotalBalloonText();
 
-        // Check Mystery Button Progress
-        if (ScoreManager.Instance.TotalScore > _mysteryCost) {
-            _mysteryButton.interactable = true;
-        } else {
-            _mysteryButton.interactable = false;
-        }
+        CheckMysteryButtonProgress();
+    }
+
+    private void CheckMysteryButtonProgress()
+    {
+        if (ScoreManager.Instance.TotalScore > _mysteryCost) _mysteryButton.interactable = true; else _mysteryButton.interactable = false;
+        // if (GameManager.Instance.BalloonSlasherObtained) _mysteryButton.gameObject.SetActive(false);
+    }
+
+    private void SetTotalBalloonText() {
+        _totalBalloonMenuText.text = $"Balloons: {ScoreManager.Instance.TotalScore}";
     }
 
     public void OnGameStart() {
@@ -46,7 +60,16 @@ public class MainMenu : MonoBehaviour
     public void OnMysteryButton() {
         if (ScoreManager.Instance.TotalScore >= _mysteryCost) {
             // Pay up the Balloon Price
-            ScoreManager.Instance.TotalScore -= _mysteryCost;
+            // ScoreManager.Instance.UpdateTotalScore(-_mysteryCost);
+            SetTotalBalloonText();
+
+            GameManager.Instance.BalloonSlasherObtained = true;
+
+            PlayerPrefs.SetInt("SlasherObtained", 1);
+            PlayerPrefs.Save();
+
+            _mysteryButton.gameObject.SetActive(false);
+            _balloonSlasherAnimator.SetBool("BalloonSlasherAcquired", true);
         }
     }
 }

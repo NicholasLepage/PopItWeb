@@ -15,6 +15,10 @@ public class GameManager : MonoBehaviour
     public UnityEvent<int> OnBalloonPopped;
     public UnityEvent OnGameOver;
 
+
+    public bool BalloonSlasherObtained = false;
+    public bool BalloonSlasherTurnedOn = false;
+
     public enum GameState {
         MAINMENU,
         SHOP,
@@ -22,9 +26,6 @@ public class GameManager : MonoBehaviour
         GAME,
         GAMEOVER
     }
-
-
-
     public GameState CurrentGameState { get; private set; }
 
 
@@ -38,6 +39,8 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject); // Destroy the GameObject, this component is attached to
         }
         CurrentGameState = GameState.MAINMENU;
+
+        BalloonSlasherObtained = PlayerPrefs.GetInt("SlasherObtained", 0) == 1 ? true : false;
     }        
 
 

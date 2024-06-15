@@ -41,6 +41,11 @@ public class ScoreManager : MonoBehaviour
         OnScoreChanged.Invoke();
     }
 
+    public void UpdateTotalScore(int scoreValue) {
+        TotalScore += scoreValue;
+        PlayerPrefs.SetInt("TotalScore", TotalScore);
+    }
+
     public void OnGameOver()
     {
         TotalScore += Score;
