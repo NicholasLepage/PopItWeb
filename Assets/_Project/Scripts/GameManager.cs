@@ -23,6 +23,8 @@ public class GameManager : MonoBehaviour
         GAMEOVER
     }
 
+
+
     public GameState CurrentGameState { get; private set; }
 
 
@@ -60,6 +62,8 @@ public class GameManager : MonoBehaviour
         }
 
         _mainMenu.SetActive(true);
-
     }
+    
+
+
 }
