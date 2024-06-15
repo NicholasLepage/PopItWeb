@@ -59,7 +59,13 @@ public class Balloon : MonoBehaviour
         Die();
     }
 
-    private void Die()
+    private void OnTriggerEnter(Collider other) {
+        if (other.gameObject.tag == "SlashAbility") {
+            Die();
+        }
+    }
+
+    public void Die()
     {
         GameManager.Instance.OnBalloonPopped.Invoke(_balloonValue);
         _audioSource.Play();

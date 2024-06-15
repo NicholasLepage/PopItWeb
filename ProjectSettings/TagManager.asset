@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Balloon
   - BadBalloon
+  - SlashAbility
   layers:
   - Default
   - TransparentFX
