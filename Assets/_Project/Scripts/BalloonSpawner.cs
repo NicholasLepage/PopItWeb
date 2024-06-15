@@ -29,6 +29,7 @@ public class BalloonSpawner : MonoBehaviour
     void Start()
     {
         gameObject.SetActive(false);
+        _currentDifficultyLevel = DifficultyLevel.MEDIUM;
     }
 
     private void OnEnable() {
