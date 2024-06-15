@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,6 +8,7 @@ public class MainMenu : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI _totalBalloonMenuText;
     [SerializeField] private TextMeshProUGUI _scoreObtainedText;
+    [SerializeField] private Button _playButton;
 
 
     [SerializeField] private Canvas _mainMenuCanvas;
@@ -15,6 +17,8 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private GameObject _balloonSlasher;
 
     private int _mysteryCost = 1000;
+
+    private float _replayDelay = 0.5f;
 
     private Animator _balloonSlasherAnimator;
 
@@ -38,7 +42,9 @@ public class MainMenu : MonoBehaviour
 
     public void GameOverMenu()
     {
+        gameObject.SetActive(true);
         _mainMenuCanvas.gameObject.SetActive(true);
+        StartCoroutine(ReplayDelay()); // Prevent accidental replay
 
         _scoreObtainedText.enabled = true;
         _scoreObtainedText.text = $"+{ScoreManager.Instance.Score}";
@@ -56,6 +62,12 @@ public class MainMenu : MonoBehaviour
 
     private void SetTotalBalloonText() {
         _totalBalloonMenuText.text = $"Balloons: {ScoreManager.Instance.TotalScore}";
+    }
+
+    private IEnumerator ReplayDelay() {
+        _playButton.interactable = false;
+        yield return new WaitForSeconds(_replayDelay);
+        _playButton.interactable = true;
     }
 
     public void OnGameStart() {

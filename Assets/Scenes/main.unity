@@ -7684,6 +7684,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _totalBalloonMenuText: {fileID: 1532296128}
   _scoreObtainedText: {fileID: 1109669051}
+  _playButton: {fileID: 880479872}
   _mainMenuCanvas: {fileID: 135049306}
   _mysteryButton: {fileID: 2089222170}
   _balloonSlasher: {fileID: 663260564}
