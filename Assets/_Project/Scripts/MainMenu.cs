@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -7,6 +8,7 @@ public class MainMenu : MonoBehaviour
 {
 
     [SerializeField] private TextMeshProUGUI _totalBalloonMenuText;
+    [SerializeField] private TextMeshProUGUI _highScoreMenuText;
     [SerializeField] private TextMeshProUGUI _scoreObtainedText;
     [SerializeField] private Button _playButton;
 
@@ -32,7 +34,9 @@ public class MainMenu : MonoBehaviour
 
         _balloonSlasherAnimator = _balloonSlasher.GetComponent<Animator>();
 
-        _totalBalloonMenuText.text = $"Balloons: {ScoreManager.Instance.TotalScore}";
+        SetTotalBalloonText();
+
+        SetHighScoreText();
 
         BalloonSlasherObtained = PlayerPrefs.GetInt("SlasherObtained", 0) == 1 ? true : false;
         if (BalloonSlasherObtained) _balloonSlasherAnimator.SetBool("BalloonSlasherAcquired", true);
@@ -50,9 +54,11 @@ public class MainMenu : MonoBehaviour
         _scoreObtainedText.text = $"+{ScoreManager.Instance.Score}";
 
         SetTotalBalloonText();
+        SetHighScoreText();
 
         CheckMysteryButtonProgress();
     }
+
 
     private void CheckMysteryButtonProgress()
     {
@@ -62,6 +68,11 @@ public class MainMenu : MonoBehaviour
 
     private void SetTotalBalloonText() {
         _totalBalloonMenuText.text = $"Balloons: {ScoreManager.Instance.TotalScore}";
+    }
+
+    private void SetHighScoreText()
+    {
+        _highScoreMenuText.text = $"High Score: {ScoreManager.Instance.HighScore}";
     }
 
     private IEnumerator ReplayDelay() {

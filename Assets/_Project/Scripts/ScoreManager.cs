@@ -6,6 +6,8 @@ public class ScoreManager : MonoBehaviour
 
     public static ScoreManager Instance;
 
+    public int HighScore = 0;
+
     public int TotalScore = 0;
 
     public int Score = 0;
@@ -23,7 +25,8 @@ public class ScoreManager : MonoBehaviour
         {
             Destroy(gameObject); // Destroy the GameObject, this component is attached to
         }
-
+        PlayerPrefs.DeleteKey("HighScore");
+        HighScore = PlayerPrefs.GetInt("HighScore", 0);
         TotalScore = PlayerPrefs.GetInt("TotalScore", TotalScore);
     }
 
@@ -41,6 +44,7 @@ public class ScoreManager : MonoBehaviour
         OnScoreChanged.Invoke();
     }
 
+    // Only used for Mystery Button
     public void UpdateTotalScore(int scoreValue) {
         TotalScore += scoreValue;
         PlayerPrefs.SetInt("TotalScore", TotalScore);
@@ -50,5 +54,8 @@ public class ScoreManager : MonoBehaviour
     {
         TotalScore += Score;
         PlayerPrefs.SetInt("TotalScore", TotalScore);
+
+        if (Score > HighScore) HighScore = Score;
+        PlayerPrefs.SetInt("HighScore", HighScore);
     }
 }
