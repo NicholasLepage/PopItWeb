@@ -18,6 +18,8 @@ public class MainMenu : MonoBehaviour
 
     private Animator _balloonSlasherAnimator;
 
+    public bool BalloonSlasherObtained { get; private set; }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +29,9 @@ public class MainMenu : MonoBehaviour
         _balloonSlasherAnimator = _balloonSlasher.GetComponent<Animator>();
 
         _totalBalloonMenuText.text = $"Balloons: {ScoreManager.Instance.TotalScore}";
+
+        BalloonSlasherObtained = PlayerPrefs.GetInt("SlasherObtained", 0) == 1 ? true : false;
+        _balloonSlasherAnimator.SetBool("AlreadyUnlocked", true);
 
         CheckMysteryButtonProgress();
     }
@@ -46,7 +51,7 @@ public class MainMenu : MonoBehaviour
     private void CheckMysteryButtonProgress()
     {
         if (ScoreManager.Instance.TotalScore > _mysteryCost) _mysteryButton.interactable = true; else _mysteryButton.interactable = false;
-        // if (GameManager.Instance.BalloonSlasherObtained) _mysteryButton.gameObject.SetActive(false);
+        if (BalloonSlasherObtained) _mysteryButton.gameObject.SetActive(false);
     }
 
     private void SetTotalBalloonText() {

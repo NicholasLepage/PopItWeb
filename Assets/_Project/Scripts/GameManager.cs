@@ -40,7 +40,6 @@ public class GameManager : MonoBehaviour
         }
         CurrentGameState = GameState.MAINMENU;
 
-        BalloonSlasherObtained = PlayerPrefs.GetInt("SlasherObtained", 0) == 1 ? true : false;
     }        
 
 
